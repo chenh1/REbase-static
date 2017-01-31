@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-//import objectOne from './objectOneReducer';
+import login from './loginReducer';
 //import objectTwo from './objectTwoReducer';
 
 const rootReducer = combineReducers({
-  //objectOne,
+  login
   //objectTwo
 });
 

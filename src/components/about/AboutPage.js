@@ -4,8 +4,8 @@ class AboutPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>About</h1>
-        <p>About React, Redux, ES6</p>
+        <h1>Abt</h1>
+        <p>RRE</p>
       </div>
     );
   }
