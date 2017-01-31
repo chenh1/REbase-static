@@ -19,7 +19,7 @@ const users = [
                      if (users[i].username === data.username && users[i].password === data.password) {
                          resolve(users[i]);
                      } else {
-                         reject("Username/password is incorrect");
+                         reject({'errorMessage':"Username/password is incorrect"});
                      }
                  } 
              })

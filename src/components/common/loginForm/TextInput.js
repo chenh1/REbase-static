@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const TextInput = ({name, label, placeholder, onChange, error}) => {
+const TextInput = ({name, label, placeholder, onChange}) => {
     return (
         <div>
             <input 

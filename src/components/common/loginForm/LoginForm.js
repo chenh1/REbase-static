@@ -9,31 +9,33 @@ class LoginForm extends React.Component {
     super(props, context);
 
     this.state = {
-      user: {}
+      user: Object.assign({}, this.props.user)
     };
 
     this.login = this.login.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
   }
 
+  //sets the form state to ship out in the login function
   updateUserState(event) {
-    console.log(this);
     const field = event.target.name;
     let user = this.state.user;
     user[field] = event.target.value;
     return this.setState({user: user});
   }
 
+  //calls the action using the state set as the input fields change
   login(event) {
     event.preventDefault();
-    console.log(event);
     this.props.actions.login(this.state.user)
-    console.log(this.state.user)
   }
 
   render() {
+    console.log(this.state)
     return (
       <form>
+
+
         <TextInput 
           name="username"
           label="username"
@@ -57,6 +59,7 @@ class LoginForm extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  console.log(state);
   return {
     user: state.user
   };
