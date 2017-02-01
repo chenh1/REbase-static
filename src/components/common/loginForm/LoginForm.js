@@ -16,6 +16,12 @@ class LoginForm extends React.Component {
     this.updateUserState = this.updateUserState.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user != nextProps.user) {
+      this.setState({user: Object.assign({}, nextProps.user)});
+    }
+  }
+
   //sets the form state to ship out in the login function
   updateUserState(event) {
     const field = event.target.name;
@@ -34,8 +40,6 @@ class LoginForm extends React.Component {
     console.log(this.state)
     return (
       <form>
-
-
         <TextInput 
           name="username"
           label="username"
@@ -52,7 +56,7 @@ class LoginForm extends React.Component {
 
         <input
           type="submit"
-          onClick={this.login} />
+          onClick={this.login}/>
       </form>
     );
   }
@@ -61,7 +65,7 @@ class LoginForm extends React.Component {
 function mapStateToProps(state, ownProps) {
   console.log(state);
   return {
-    user: state.user
+    user: state
   };
 }
 
