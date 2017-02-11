@@ -37,22 +37,25 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    let hidden = this.state.user.id ? 'hidden' : '';
     console.log(this.state)
     return (
-      <form>
+      <form className={hidden}>
+        <div>
+          {this.state.user.errorMessage}
+        </div>
+
         <TextInput 
           name="username"
           label="username"
           placeholder="user name"
-          onChange={this.updateUserState}
-          error="placeholder"/>
+          onChange={this.updateUserState}/>
 
         <TextInput 
           name="password"
           label="password"
           placeholder="password"
-          onChange={this.updateUserState}
-          error="placeholder"/>
+          onChange={this.updateUserState}/>
 
         <input
           type="submit"
@@ -65,7 +68,7 @@ class LoginForm extends React.Component {
 function mapStateToProps(state, ownProps) {
   console.log(state);
   return {
-    user: state
+    user: state.login[state.login.length - 1]
   };
 }
 

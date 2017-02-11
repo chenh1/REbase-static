@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
+import '../../../styles/textInput.css';
 
 const TextInput = ({name, label, placeholder, onChange}) => {
     return (
-        <div>
+        <div className="login-field">
             <input 
                 type="text"
                 name={name}

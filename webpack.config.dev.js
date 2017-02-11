@@ -1,5 +1,13 @@
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+
+const sassLoaders = [
+  'css-loader',
+  'postcss-loader',
+  'sass-loader?includePaths[]=' + path.resolve(__dirname, './src')
+];
 
 export default {
   debug: true,
@@ -21,12 +29,14 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('style.css')
   ],
   module: {
     loaders: [
       {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
-      {test: /(\.css)$/, loaders: ['style', 'css']},
+      {test: /(\.css)$/, exclude: /node_modules/, loaders: ['style', 'css']},
+      {test: /\.scss$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join('!'))},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       {test: /\.(otf|woff|woff2|pdf)$/, loader: 'file-loader'},
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
@@ -39,6 +49,15 @@ export default {
         ]
       }
     ]
+  },
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+  ],
+  resolve: {
+    extensions: ['', '.js', '.scss'],
+    root: [path.join(__dirname, './src')]
   },
   imageWebpackLoader: {
     mozjpeg: {

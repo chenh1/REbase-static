@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/style.css';
 
 class AboutPage extends React.Component {
   render() {
